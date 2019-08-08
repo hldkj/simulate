@@ -8,10 +8,13 @@ import com.sft.simulate.entity.Member;
 import com.sft.simulate.enums.common.ResponseEnum;
 import com.sft.simulate.pojo.MemberRequest;
 import com.sft.simulate.pojo.Response;
+import com.sft.simulate.pojo.query.member.MemberQuery;
 import com.sft.simulate.service.MemberService;
 import com.sft.simulate.utils.HttpClientUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.thymeleaf.util.StringUtils;
@@ -35,7 +38,7 @@ public class MemberController {
      * 获取会员数据
      * @return
      */
-    @RequestMapping("pull")
+    @RequestMapping("/pull")
     public Response pullOutMemberInfo(){
         //拉取会员数据
         try {
@@ -81,7 +84,7 @@ public class MemberController {
     }
 
 
-    @RequestMapping(value = "login")
+    @RequestMapping("/login")
     public Response memberLogin(Long id){
         Member member = memberService.getMemberById(id);
         if(member==null){
@@ -101,6 +104,12 @@ public class MemberController {
         memberService.updateCookieById(cookie,id);
         return Response.success();
     }
+
+    @GetMapping("/page")
+    public Response<Page<Member>> query(MemberQuery query) {
+        return Response.success(memberService.members(query));
+    }
+
 
 
 }
