@@ -26,4 +26,15 @@ public class SystemController {
         return new ModelAndView("welcome");
     }
 
+    @GetMapping("/member/index")
+    public ModelAndView member() {
+        return new ModelAndView("/member/index");
+    }
+
+
+    @GetMapping("/goods/index")
+    public ModelAndView goods() {
+        return new ModelAndView("/goods/index");
+    }
+
 }

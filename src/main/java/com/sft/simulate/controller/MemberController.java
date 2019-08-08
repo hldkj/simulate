@@ -8,10 +8,13 @@ import com.sft.simulate.entity.Member;
 import com.sft.simulate.enums.common.ResponseEnum;
 import com.sft.simulate.pojo.MemberRequest;
 import com.sft.simulate.pojo.Response;
+import com.sft.simulate.pojo.query.member.MemberQuery;
 import com.sft.simulate.service.MemberService;
 import com.sft.simulate.utils.HttpClientUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.thymeleaf.util.StringUtils;
@@ -101,6 +104,12 @@ public class MemberController {
         memberService.updateCookieById(cookie,id);
         return Response.success();
     }
+
+    @GetMapping("/page")
+    public Response<Page<Member>> query(MemberQuery query) {
+        return Response.success(memberService.members(query));
+    }
+
 
 
 }
