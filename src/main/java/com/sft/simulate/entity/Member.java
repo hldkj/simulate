@@ -41,7 +41,7 @@ public class Member {
     private String cookie;
 
     @Column
-    private Date addDate;
+    private Date createTime;
 
     @Column
     private String mobile;

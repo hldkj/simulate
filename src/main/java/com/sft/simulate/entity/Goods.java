@@ -37,6 +37,6 @@ public class Goods {
     private String brief;
 
     @Column
-    private Date addDate;
+    private Date createTime;
 
 }

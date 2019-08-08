@@ -15,7 +15,7 @@ import java.util.Date;
 @DynamicInsert
 @Table
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class Order {
+public class Trading {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,22 +25,19 @@ public class Order {
     private String orderNum;
 
     @Column
-    private String userName;
+    private String username;
 
     @Column
-    private String goodsName;
+    private String goodsname;
 
     @Column
     private BigDecimal price;
 
     @Column
-    private Date payTime;
-
-    @Column
     private Date createTime;
 
     @Column
-    private Integer payStatus;
+    private Integer status;
 
     @Column
     private String mobile;

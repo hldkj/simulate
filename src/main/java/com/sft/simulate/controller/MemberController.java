@@ -76,7 +76,7 @@ public class MemberController {
             member.setName(mr.getName());
             member.setMobile(mr.getMobile());
             member.setCookie(mr.getCookie());
-            member.setAddDate(new Date());
+            member.setCreateTime(new Date());
             members.add(member);
 
         }

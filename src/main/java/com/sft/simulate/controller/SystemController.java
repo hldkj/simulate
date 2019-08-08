@@ -37,4 +37,9 @@ public class SystemController {
         return new ModelAndView("/goods/index");
     }
 
+    @GetMapping("/order/index")
+    public ModelAndView order() {
+        return new ModelAndView("/order/index");
+    }
+
 }

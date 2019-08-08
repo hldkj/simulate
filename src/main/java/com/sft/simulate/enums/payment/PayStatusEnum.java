@@ -2,10 +2,8 @@ package com.sft.simulate.enums.payment;
 
 public enum PayStatusEnum {
 
-    PAY_READY(0,"待支付"),
-    PAY_SUCCESS(1,"支付成功"),
-    PAY_ONGOING(2,"支付中"),
-    PAY_FAIL(-1,"支付失败");
+    UNPAID(0,"未支付"),
+    SUCCESS(1,"支付成功");
 
     PayStatusEnum(int code, String message) {
         this.code = code;

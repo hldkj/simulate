@@ -8,6 +8,7 @@ import com.sft.simulate.entity.Goods;
 import com.sft.simulate.enums.common.ResponseEnum;
 import com.sft.simulate.pojo.GoodsRequest;
 import com.sft.simulate.pojo.Response;
+import com.sft.simulate.pojo.query.goods.GoodsQuery;
 import com.sft.simulate.service.GoodsService;
 import com.sft.simulate.utils.HttpClientUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -73,10 +74,16 @@ public class GoodsController {
             goods.setName(gr.getName());
             goods.setPrice(gr.getPrice());
             goods.setBrief(gr.getBrief());
-            goods.setAddDate(new Date());
+            goods.setCreateTime(new Date());
             goodsList.add(goods);
         }
         goodsService.saveGoodsList(goodsList);
+    }
+
+
+    @GetMapping("/page")
+    public Response<Page<Goods>> query(GoodsQuery query) {
+        return Response.success(goodsService.goods(query));
     }
 
 

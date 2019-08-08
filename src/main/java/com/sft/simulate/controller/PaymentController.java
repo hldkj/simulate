@@ -3,7 +3,7 @@ package com.sft.simulate.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.sft.simulate.entity.Goods;
 import com.sft.simulate.entity.Member;
-import com.sft.simulate.entity.Order;
+import com.sft.simulate.entity.Trading;
 import com.sft.simulate.enums.common.ResponseEnum;
 import com.sft.simulate.enums.payment.PayStatusEnum;
 import com.sft.simulate.pojo.Response;
@@ -73,13 +73,13 @@ public class PaymentController {
      * @param goods
      */
     private void createOrder(Member member,Goods goods){
-        Order order = new Order();
+        Trading order = new Trading();
         order.setOrderNum(OrderNoCreateUtil.getOrderNo());
-        order.setUserName(member.getName());
-        order.setGoodsName(goods.getName());
+        order.setUsername(member.getName());
+        order.setGoodsname(goods.getName());
         order.setPrice(goods.getPrice());
         order.setCreateTime(new Date());
-        order.setPayStatus(PayStatusEnum.PAY_ONGOING.getCode());
+        order.setStatus(PayStatusEnum.UNPAID.getCode());
         order.setMobile(member.getMobile());
         orderService.saveOrder(order);
     }
@@ -95,8 +95,8 @@ public class PaymentController {
      */
     private Map<String,String> fillParams(Member member,Goods goods,int payType,int goodsnum){
         Map<String,String> map = new HashMap<>();
-        map.put("memberId",String.valueOf(member.getId()));
-        map.put("goodsId",String.valueOf(goods.getId()));
+        map.put("memberId",String.valueOf(member.getMemberId()));
+        map.put("goodsId",String.valueOf(goods.getGoodsId()));
         map.put("goodsNum",String.valueOf(goodsnum));
         map.put("paymentId",String.valueOf(payType));
         map.put("shippingId","1");
