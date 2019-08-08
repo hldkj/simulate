@@ -35,7 +35,7 @@ public class MemberController {
      * 获取会员数据
      * @return
      */
-    @RequestMapping("pull")
+    @RequestMapping("/pull")
     public Response pullOutMemberInfo(){
         //拉取会员数据
         try {
@@ -67,7 +67,7 @@ public class MemberController {
                 }
             }
             Member member = new Member();
-            member.setId(mr.getMember_id());
+            member.setMemberId(mr.getMember_id());
             member.setUsername(mr.getUname());
             member.setPassword(mr.getPassword());
             member.setName(mr.getName());
@@ -81,7 +81,7 @@ public class MemberController {
     }
 
 
-    @RequestMapping(value = "login")
+    @RequestMapping("/login")
     public Response memberLogin(Long id){
         Member member = memberService.getMemberById(id);
         if(member==null){

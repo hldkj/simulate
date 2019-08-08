@@ -1,28 +1,28 @@
 package com.sft.simulate.enums.payment;
 
-public enum  PaymentEnum {
+public enum PayTypeEnum {
 
 
-    AliPayH5("AliPayH5","支付宝H5"),
-    AliPayScan("AliPayScan","支付宝扫码支付"),
-    WeChatH5("WeChatH5","微信H5");
+    AliPayH5(1,"支付宝H5"),
+    AliPayScan(2,"支付宝扫码支付"),
+    WeChatH5(3,"微信H5");
 
 
-    PaymentEnum(String code, String type) {
+    PayTypeEnum(int code, String type) {
         this.code = code;
         this.type = type;
     }
 
-    private String code;
+    private int code;
 
 
     private String type;
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 

@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.thymeleaf.util.StringUtils;
@@ -33,13 +34,6 @@ public class GoodsController {
 
     @Autowired
     private GoodsService goodsService;
-
-
-    /*@GetMapping("/get")
-    public Response getGoods(){
-        Page<Goods> goodsPage =
-    }*/
-
 
     /**
      * 获取商品数据
@@ -75,7 +69,7 @@ public class GoodsController {
                 }
             }
             Goods goods = new Goods();
-            goods.setId(gr.getGoods_id());
+            goods.setGoodsId(gr.getGoods_id());
             goods.setName(gr.getName());
             goods.setPrice(gr.getPrice());
             goods.setBrief(gr.getBrief());

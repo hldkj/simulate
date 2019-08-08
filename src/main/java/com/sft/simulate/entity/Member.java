@@ -23,6 +23,8 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Long memberId;
+
     @Column
     private String name;
 
@@ -33,7 +35,7 @@ public class Member {
     private String password;
 
     @Column
-    private int disabled;
+    private int state;
 
     @Column
     private String cookie;
