@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:log4jdbc:mysql://127.0.0.1:3306/simulate?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
-    password: 123456
+    password: root
     driver-class-name: net.sf.log4jdbc.DriverSpy
     hikari:
       maximum-pool-size: 10

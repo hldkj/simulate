@@ -12,11 +12,11 @@ public enum UserError implements ErrorCode {
 
 
     private int code;
-    private String mssage;
+    private String message;
 
-    UserError(int code, String mssage) {
+    UserError(int code, String message) {
         this.code = code;
-        this.mssage = mssage;
+        this.message = message;
     }
 
     @Override
@@ -26,6 +26,6 @@ public enum UserError implements ErrorCode {
 
     @Override
     public String message() {
-        return mssage;
+        return message;
     }
 }
