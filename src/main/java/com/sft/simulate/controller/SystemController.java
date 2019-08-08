@@ -42,4 +42,9 @@ public class SystemController {
         return new ModelAndView("/order/index");
     }
 
+    @GetMapping("/pay/index")
+    public ModelAndView pay() {
+        return new ModelAndView("/pay/index");
+    }
+
 }
