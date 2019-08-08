@@ -37,4 +37,10 @@ public class SystemController {
         return new ModelAndView("/goods/index");
     }
 
+
+    @GetMapping("/pay/index")
+    public ModelAndView pay() {
+        return new ModelAndView("/pay/index");
+    }
+
 }

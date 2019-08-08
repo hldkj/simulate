@@ -21,7 +21,7 @@ import static com.sft.simulate.pojo.CurrencyConstant.ENCODING;
 import static com.sft.simulate.pojo.CurrencyConstant.PAYMENT_ORDER_URL;
 
 @RestController
-@RequestMapping("pay")
+@RequestMapping("/pay")
 @Slf4j
 public class PaymentController {
 
@@ -31,8 +31,8 @@ public class PaymentController {
     @Autowired
     private GoodsService goodsService;
 
-    @PostMapping("order")
-    public Response paymentOrder(Integer payType,String money,int goodsnum){
+    @PostMapping("/order")
+    public String paymentOrder(Integer payType,String money,int goodsnum){
         String payHtml = null;
         try {
             //1.随机选取订单会员
@@ -40,21 +40,21 @@ public class PaymentController {
             //2.选取一个与其价格相同的商品
             Goods goods = randomGoods(money);
             if(goods == null){
-                return Response.fail("无该价位商品");
+                return "金额不匹配";
             }
             //3.进行下单
             Map<String,String> map = fillParams(member,goods,payType,goodsnum);
             String result = HttpClientUtil.post(PAYMENT_ORDER_URL,map,ENCODING);
             Response response = JSONObject.parseObject(result,Response.class);
             if(response.getCode()!= ResponseEnum.SUCCESS.getCode()){
-                return Response.fail(response.getMsg());
+                return response.getMsg();
             }
             payHtml = response.getData().toString();
         } catch (Exception e) {
             log.error("系统异常:{}",e);
-            return Response.fail("系统异常");
+//            return Response.fail("系统异常");
         }
-        return Response.success(payHtml);
+        return payHtml;
     }
 
 
@@ -86,6 +86,7 @@ public class PaymentController {
 
     private Goods randomGoods(String money){
         BigDecimal mon = new BigDecimal(money);
+        mon.setScale(2);
         Map<BigDecimal,List<Goods>> map = this.getAllGoods();
         if(map.get(mon)==null){
             return null;

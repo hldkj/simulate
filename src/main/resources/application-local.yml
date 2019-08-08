@@ -1,7 +1,7 @@
 spring:
   datasource:
-    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/simulate?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
-    username: root
+    url: jdbc:log4jdbc:mysql://192.168.1.104:3306/simulate?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    username: ly
     password: root
     driver-class-name: net.sf.log4jdbc.DriverSpy
     hikari:
