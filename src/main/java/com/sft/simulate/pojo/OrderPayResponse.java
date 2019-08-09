@@ -20,7 +20,7 @@ public class OrderPayResponse {
     /**
      * 商品数量
      */
-    private int goodsNum;
+    private Integer goodsNum;
 
     /**
      * 收货地址Id

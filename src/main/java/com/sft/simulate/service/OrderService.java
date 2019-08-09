@@ -1,6 +1,8 @@
 package com.sft.simulate.service;
 
 import com.sft.simulate.entity.Trading;
+import com.sft.simulate.enums.error.UserError;
+import com.sft.simulate.exceptions.ServiceException;
 import com.sft.simulate.pojo.query.order.OrderQuery;
 import com.sft.simulate.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +47,15 @@ public class OrderService {
             return cb.and(predicates.toArray(query1));
         }, pageable);
         return pages;
+    }
+
+    public void updateStatusByOrderNum(Integer status,String orderNum){
+        orderRepository.updateStatusByOrderNum(status,orderNum);
+    }
+
+    @Transactional(readOnly =  true)
+    public Trading findByOrderNum(String orderNum){
+        return orderRepository.findByOrderNum(orderNum).orElseThrow(()-> new ServiceException(UserError.NOT_FOUND));
     }
 
 }
