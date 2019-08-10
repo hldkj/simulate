@@ -6,5 +6,6 @@ spring:
     driver-class-name: net.sf.log4jdbc.DriverSpy
     hikari:
       maximum-pool-size: 10
-b2c:
-  host: http://192.168.1.104:8081
+host:
+  b2c: http://192.168.1.104:8080
+  local: http://192.168.1.104:8011

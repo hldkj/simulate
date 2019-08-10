@@ -33,7 +33,7 @@ public class MemberController {
 
     @Autowired
     private MemberService memberService;
-    @Value("${b2c.host}")
+    @Value("${host.b2c}")
     private String HOST;
 
 

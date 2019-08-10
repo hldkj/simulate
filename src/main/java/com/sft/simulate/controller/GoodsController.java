@@ -37,7 +37,7 @@ public class GoodsController {
     @Autowired
     private GoodsService goodsService;
 
-    @Value("${b2c.host}")
+    @Value("${host.b2c}")
     private String HOST;
 
 

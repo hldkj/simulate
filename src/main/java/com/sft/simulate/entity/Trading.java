@@ -48,4 +48,10 @@ public class Trading {
     @Column
     private Integer goodsNum;
 
+    @Column
+    private String callbackUrl;
+
+    @Column
+    private String outOrderNo;
+
 }
