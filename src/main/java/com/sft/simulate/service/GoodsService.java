@@ -52,9 +52,9 @@ public class GoodsService{
     }
 
 
-    @Transactional(readOnly = true)
-    public Integer findMaxId(){
-        return goodsRepository.findTopByGoodsId();
-    }
+//    @Transactional(readOnly = true)
+//    public Integer findMaxId(){
+//        return goodsRepository.findTopByGoodsId();
+//    }
 
 }

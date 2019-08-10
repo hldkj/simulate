@@ -56,16 +56,17 @@ public class GoodsController {
             }
             List<GoodsRequest> results = JSONArray.parseArray
             (JSON.toJSONString(response.getData()),GoodsRequest.class);
-            //Iterator<Goods> it = goodsService.getGoodsList();
-            addNumber = saveGoods(results);
+            Iterator<Goods> it = goodsService.getGoodsList();
+            saveGoods(results,it);
+            //addNumber = saveGoods(results);
         } catch (Exception e) {
             log.error("系统异常:{}",e);
             return Response.fail("系统异常");
         }
-        return Response.success(addNumber);
+        return Response.success();
     }
 
-    private int saveGoods(List<GoodsRequest> requests){
+    /*private int saveGoods(List<GoodsRequest> requests){
         int addNumber = 0;
         List<Goods> goodsList = new ArrayList<>();
         int goodsMix = goodsService.findMaxId();
@@ -84,7 +85,7 @@ public class GoodsController {
         }
         goodsService.saveGoodsList(goodsList);
         return addNumber;
-    }
+    }*/
 
 
     private void saveGoods(List<GoodsRequest> results,Iterator<Goods> it){

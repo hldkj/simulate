@@ -10,7 +10,7 @@ import java.util.List;
 public interface GoodsRepository extends JpaRepository<Goods> {
 
 
-    Integer findTopByGoodsId();
+    //Integer findTopByGoodsId();
 
 
 }

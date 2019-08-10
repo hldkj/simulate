@@ -58,9 +58,9 @@ public class MemberService {
         return pages;
     }
 
-    @Transactional(readOnly = true)
+   /* @Transactional(readOnly = true)
     public int findMixId(){
         return memberRepository.findTopByMemberId();
-    }
+    }*/
 
 }

@@ -20,5 +20,5 @@ public interface MemberRepository extends JpaRepository<Member>{
     void updateCookieById(String cookie,Long id);
 
 
-    Integer findTopByMemberId();
+    //Integer findTopByMemberId();
 }

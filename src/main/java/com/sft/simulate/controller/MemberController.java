@@ -53,18 +53,19 @@ public class MemberController {
             }
             List<MemberRequest> results = JSONArray.parseArray
             (JSON.toJSONString(response.getData()),MemberRequest.class);
-            addNumber = saveMember(results);
-            //Iterator<Member> it = memberService.getMemberList();
-            //saveMember(it,results);
+            //addNumber = saveMember(results);
+            Iterator<Member> it = memberService.getMemberList();
+            saveMember(it,results);
         } catch (Exception e) {
             log.error("系统异常:{}",e);
             return Response.fail("系统异常");
         }
-        return Response.success(addNumber);
+        //return Response.success(addNumber);
+        return Response.success();
     }
 
 
-    private int saveMember(List<MemberRequest> requests){
+    /*private int saveMember(List<MemberRequest> requests){
         int addNumber = 0;
         List<Member> members = new ArrayList<>();
         int memberMix = memberService.findMixId();
@@ -85,7 +86,7 @@ public class MemberController {
         }
         memberService.saveAll(members);
         return addNumber;
-    }
+    }*/
 
 
 
