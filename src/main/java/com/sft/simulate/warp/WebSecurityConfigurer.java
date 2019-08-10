@@ -57,6 +57,8 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/goods/pull","/member/pull","/pay/index").permitAll()
                 .antMatchers(HttpMethod.POST, "/member/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/pay/order").permitAll()
+                .antMatchers(HttpMethod.POST, "/pay/callback").permitAll()
+                .antMatchers(HttpMethod.POST, "/pay/return").permitAll()
                 .anyRequest().authenticated()
                 .and().cors()
                 .and().formLogin().loginPage(LOGIN_ENTRY_POINT).successHandler(successHandler).failureHandler(failureHandler)

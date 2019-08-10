@@ -42,4 +42,10 @@ public class Trading {
     @Column
     private String mobile;
 
+    @Column
+    private Integer payType;
+
+    @Column
+    private Integer goodsNum;
+
 }

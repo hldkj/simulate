@@ -47,6 +47,7 @@ public class GoodsController {
      */
     @GetMapping("/pull")
     public Response pullOutGoodsInfo(){
+        int addNumber;
         try {
             String result = HttpClientUtil.get(HOST+PULLOUT_GOODS_URL,null,ENCODING);
             Response response = JSONObject.parseObject(result,Response.class);
@@ -55,13 +56,34 @@ public class GoodsController {
             }
             List<GoodsRequest> results = JSONArray.parseArray
             (JSON.toJSONString(response.getData()),GoodsRequest.class);
-            Iterator<Goods> it = goodsService.getGoodsList();
-            saveGoods(results,it);
+            //Iterator<Goods> it = goodsService.getGoodsList();
+            addNumber = saveGoods(results);
         } catch (Exception e) {
             log.error("系统异常:{}",e);
             return Response.fail("系统异常");
         }
-        return Response.success();
+        return Response.success(addNumber);
+    }
+
+    private int saveGoods(List<GoodsRequest> requests){
+        int addNumber = 0;
+        List<Goods> goodsList = new ArrayList<>();
+        int goodsMix = goodsService.findMaxId();
+        for(GoodsRequest gr : requests){
+            if(gr.getGoods_id()<goodsMix){
+                continue;
+            }
+            Goods goods = new Goods();
+            goods.setGoodsId(gr.getGoods_id());
+            goods.setName(gr.getName());
+            goods.setPrice(gr.getPrice());
+            goods.setBrief(gr.getBrief());
+            goods.setCreateTime(new Date());
+            goodsList.add(goods);
+            addNumber+= addNumber;
+        }
+        goodsService.saveGoodsList(goodsList);
+        return addNumber;
     }
 
 
@@ -90,6 +112,5 @@ public class GoodsController {
     public Response<Page<Goods>> query(GoodsQuery query) {
         return Response.success(goodsService.goods(query));
     }
-
 
 }

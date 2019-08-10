@@ -18,4 +18,7 @@ public interface MemberRepository extends JpaRepository<Member>{
     @Modifying
     @Query("update Member set cookie = ?1 where id = ?2")
     void updateCookieById(String cookie,Long id);
+
+
+    Integer findTopByMemberId();
 }

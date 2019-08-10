@@ -43,6 +43,7 @@ public class MemberController {
      */
     @RequestMapping("/pull")
     public Response pullOutMemberInfo(){
+        int addNumber;
         //拉取会员数据
         try {
             String result = HttpClientUtil.get(HOST+PULLOUT_MEMBER_URL,null,ENCODING);
@@ -52,13 +53,38 @@ public class MemberController {
             }
             List<MemberRequest> results = JSONArray.parseArray
             (JSON.toJSONString(response.getData()),MemberRequest.class);
-            Iterator<Member> it = memberService.getMemberList();
-            saveMember(it,results);
+            addNumber = saveMember(results);
+            //Iterator<Member> it = memberService.getMemberList();
+            //saveMember(it,results);
         } catch (Exception e) {
             log.error("系统异常:{}",e);
             return Response.fail("系统异常");
         }
-        return Response.success();
+        return Response.success(addNumber);
+    }
+
+
+    private int saveMember(List<MemberRequest> requests){
+        int addNumber = 0;
+        List<Member> members = new ArrayList<>();
+        int memberMix = memberService.findMixId();
+        for(MemberRequest mr : requests){
+            if(mr.getMember_id()<memberMix){
+                continue;
+            }
+            Member member = new Member();
+            member.setMemberId(mr.getMember_id());
+            member.setUsername(mr.getUname());
+            member.setPassword(mr.getPassword());
+            member.setName(mr.getName());
+            member.setMobile(mr.getMobile());
+            member.setCookie(mr.getCookie());
+            member.setCreateTime(new Date());
+            members.add(member);
+            addNumber+= addNumber;
+        }
+        memberService.saveAll(members);
+        return addNumber;
     }
 
 
