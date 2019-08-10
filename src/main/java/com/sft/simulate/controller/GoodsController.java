@@ -13,6 +13,7 @@ import com.sft.simulate.service.GoodsService;
 import com.sft.simulate.utils.HttpClientUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,6 +37,10 @@ public class GoodsController {
     @Autowired
     private GoodsService goodsService;
 
+    @Value("${b2c.host}")
+    private String HOST;
+
+
     /**
      * 获取商品数据
      * @return
@@ -43,7 +48,7 @@ public class GoodsController {
     @GetMapping("/pull")
     public Response pullOutGoodsInfo(){
         try {
-            String result = HttpClientUtil.get(PULLOUT_GOODS_URL,null,ENCODING);
+            String result = HttpClientUtil.get(HOST+PULLOUT_GOODS_URL,null,ENCODING);
             Response response = JSONObject.parseObject(result,Response.class);
             if(response.getCode()!= ResponseEnum.SUCCESS.getCode()){
                 return Response.fail(response.getMsg());

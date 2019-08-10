@@ -13,6 +13,7 @@ import com.sft.simulate.service.MemberService;
 import com.sft.simulate.utils.HttpClientUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +33,8 @@ public class MemberController {
 
     @Autowired
     private MemberService memberService;
+    @Value("${b2c.host}")
+    private String HOST;
 
 
     /**
@@ -42,7 +45,7 @@ public class MemberController {
     public Response pullOutMemberInfo(){
         //拉取会员数据
         try {
-            String result = HttpClientUtil.get(PULLOUT_MEMBER_URL,null,ENCODING);
+            String result = HttpClientUtil.get(HOST+PULLOUT_MEMBER_URL,null,ENCODING);
             Response response = JSONObject.parseObject(result,Response.class);
             if(response.getCode()!= ResponseEnum.SUCCESS.getCode()){
                 return Response.fail(response.getMsg());
@@ -92,7 +95,7 @@ public class MemberController {
         }
         Map<String,String> map = new HashMap<>();
         map.put("memberId",String.valueOf(member.getId()));
-        String result = HttpClientUtil.post(MEMBER_LOGIN_URL,map,ENCODING);
+        String result = HttpClientUtil.post(HOST+MEMBER_LOGIN_URL,map,ENCODING);
         Response response = JSONObject.parseObject(result,Response.class);
         if(response.getCode()!=ResponseEnum.SUCCESS.getCode()){
             return Response.fail(response.getMsg());

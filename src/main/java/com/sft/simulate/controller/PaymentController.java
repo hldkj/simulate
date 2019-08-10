@@ -14,6 +14,7 @@ import com.sft.simulate.utils.HttpClientUtil;
 import com.sft.simulate.utils.OrderNoCreateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,6 +39,9 @@ public class PaymentController {
     @Autowired
     private OrderService orderService;
 
+    @Value("${b2c.host}")
+    private String HOST;
+
     @PostMapping("/order")
     public String paymentOrder(Integer payType,String money,int goodsnum){
         String payHtml = null;
@@ -53,7 +57,7 @@ public class PaymentController {
             createOrder(member,goods);
             //4.进行下单
             Map<String,String> map = fillParams(member,goods,payType,goodsnum);
-            String result = HttpClientUtil.post(PAYMENT_ORDER_URL,map,ENCODING);
+            String result = HttpClientUtil.post(HOST+PAYMENT_ORDER_URL,map,ENCODING);
             Response response = JSONObject.parseObject(result,Response.class);
             if(response.getCode()!= ResponseEnum.SUCCESS.getCode()){
                 return response.getMsg();

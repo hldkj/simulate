@@ -28,23 +28,22 @@ public class SystemController {
 
     @GetMapping("/member/index")
     public ModelAndView member() {
-        return new ModelAndView("/member/index");
+        return new ModelAndView("member/index");
     }
-
 
     @GetMapping("/goods/index")
     public ModelAndView goods() {
-        return new ModelAndView("/goods/index");
+        return new ModelAndView("goods/index");
     }
 
     @GetMapping("/order/index")
     public ModelAndView order() {
-        return new ModelAndView("/order/index");
+        return new ModelAndView("order/index");
     }
 
     @GetMapping("/pay/index")
     public ModelAndView pay() {
-        return new ModelAndView("/pay/index");
+        return new ModelAndView("pay/index");
     }
 
 }
