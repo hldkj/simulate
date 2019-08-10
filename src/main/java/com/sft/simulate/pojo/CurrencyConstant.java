@@ -2,8 +2,6 @@ package com.sft.simulate.pojo;
 
 public interface CurrencyConstant {
 
-    String PUBLIC_HOST = "";
-
     //拉取商品信息
     String PULLOUT_GOODS_URL = "http://192.168.1.104:8080/api/shop/goods/obtain-goods-list.do";
 

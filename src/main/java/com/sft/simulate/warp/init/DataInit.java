@@ -39,7 +39,6 @@ public class DataInit {
         return copyIterator(memberService.getMemberList());
     }
 
-
     public Map<BigDecimal,List<Goods>> initGoods(){
         Map<BigDecimal,List<Goods>> map = new HashMap<>();
         List<Goods> goodsList = copyIterator(goodsService.getGoodsList());

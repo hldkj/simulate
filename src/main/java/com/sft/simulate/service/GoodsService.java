@@ -51,4 +51,10 @@ public class GoodsService{
         return pages;
     }
 
+
+    @Transactional(readOnly = true)
+    public Integer findMaxId(){
+        return goodsRepository.findTopByGoodsId();
+    }
+
 }

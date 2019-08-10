@@ -58,4 +58,9 @@ public class MemberService {
         return pages;
     }
 
+    @Transactional(readOnly = true)
+    public int findMixId(){
+        return memberRepository.findTopByMemberId();
+    }
+
 }

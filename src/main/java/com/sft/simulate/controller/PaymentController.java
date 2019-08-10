@@ -116,7 +116,7 @@ public class PaymentController {
         Map<BigDecimal,List<Goods>> map = DataInit.goods;
         if(map.get(mon)==null){
             return null;
-        }else if(map.get(mon).size()==0){
+        }else if(map.get(mon).size()==1){
             return map.get(mon).get(0);
         }else{
             Random random = new Random();
